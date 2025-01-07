@@ -14,5 +14,9 @@ export class Service{
  
 
 }
+async createPost({title,content,image}){
+    const response=await this.databases.createDocument(config.appwriteDatabaseId,config.appwriteCollectionsId,{title,content,image})
+    return response.data
+}
 
 }
