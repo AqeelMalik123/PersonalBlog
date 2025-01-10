@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Container from '../container/Container'
+import LogoutBtn from './LogoutBtn'
 
 export default function header() {
     const authStatus=useSelector((state)=>state.auth.status)
@@ -45,7 +46,13 @@ export default function header() {
                 </div>
             </nav>
             <ul>
-                {navItem.map((item)=>item.active ? <li key={item.active}>{item.active}</li> :"No active item")}
+                {navItem.map((item)=>item.active ? <li key={item.active}>
+                    <button onClick={()=>{nagivate(item.slug)}}>{item.name}</button></li> :null)}
+                    {authStatus && <li>
+                        <LogoutBtn></LogoutBtn>
+                    </li>
+
+                    }
             </ul>
         </Container>
     </div>
